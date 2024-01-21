@@ -128,10 +128,24 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with('success', 'Product successfully updated');
     }
 
+    // public function destroy($id)
+    // {
+    //     $product = \App\Models\Product::findOrFail($id);
+    //     $product->delete();
+    //     return redirect()->route('product.index')->with('success', 'Product successfully deleted');
+    // }
     public function destroy($id)
     {
         $product = \App\Models\Product::findOrFail($id);
+
+        // Hapus gambar dari direktori
+        if (Storage::disk('public')->exists('products/' . $product->image)) {
+            Storage::disk('public')->delete('products/' . $product->image);
+        }
+
+        // Hapus entitas produk dari database
         $product->delete();
+
         return redirect()->route('product.index')->with('success', 'Product successfully deleted');
     }
 }

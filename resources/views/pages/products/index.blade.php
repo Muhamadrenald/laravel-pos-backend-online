@@ -65,6 +65,7 @@
                                     <table class="table-striped table">
                                         <tr>
 
+                                            <th>#</th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Price</th>
@@ -72,9 +73,11 @@
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
+                                        <?php $no = 1; ?>
                                         @foreach ($products as $product)
                                             <tr>
-
+                                                {{-- <td>{{ $loop->iteration }}</td> --}}
+                                                <th scope="row">{{ $no }}</th>
                                                 <td>{{ $product->name }}
                                                 </td>
                                                 <td>
@@ -86,7 +89,7 @@
                                                 <td>
                                                     @if ($product->image)
                                                         <img src="{{ asset('storage/products/' . $product->image) }}"
-                                                            alt="" width="100px" class="img-thumbnail">
+                                                            alt="" width="100px" class="img-thumbnail mt-2 mb-2 ">
                                                     @else
                                                         <span class="badge badge-danger">No Image</span>
                                                     @endif
@@ -110,9 +113,11 @@
                                                                 <i class="fas fa-times"></i> Delete
                                                             </button>
                                                         </form>
+
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <?php $no++; ?>
                                         @endforeach
 
 

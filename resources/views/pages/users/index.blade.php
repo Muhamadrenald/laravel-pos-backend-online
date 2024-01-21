@@ -65,6 +65,7 @@
                                     <table class="table-striped table">
                                         <tr>
 
+                                            <th>#</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Phone</th>
@@ -72,8 +73,14 @@
                                             <th>Created At</th>
                                             <th>Action</th>
                                         </tr>
+                                        <?php $no = 1; ?>
                                         @foreach ($users as $user)
                                             <tr>
+
+                                                {{-- <td>{{ $loop->iteration }}</td> --}}
+
+                                                <td>{{ $no }}
+                                                </td>
 
                                                 <td>{{ $user->name }}
                                                 </td>
@@ -96,8 +103,8 @@
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                            class="ml-2">
+                                                        <form action="{{ route('user.destroy', $user->id) }}"
+                                                            method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
                                                                 value="{{ csrf_token() }}" />
@@ -108,6 +115,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            <?php $no++; ?>
                                         @endforeach
 
 

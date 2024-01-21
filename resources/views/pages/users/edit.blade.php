@@ -88,6 +88,25 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Confirm Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password"
+                                        class="form-control @error('new_confirm_password') is-invalid @enderror"
+                                        name="new_confirm_password">
+                                </div>
+                                @error('new_confirm_password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label>Phone</label>
                                 <input type="number" class="form-control" name="phone" value="{{ $user->phone }}">
                             </div>

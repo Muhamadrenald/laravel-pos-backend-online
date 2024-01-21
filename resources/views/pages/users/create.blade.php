@@ -39,6 +39,7 @@
                                 <a href="{{ route('user.index') }}" class="btn btn-primary">Kembali</a>
                             </div>
                         </div>
+                        {{-- Laravel menyediakan fitur old, untuk mengecek value sebelumnya agar bisa digunakan kembali saat Validasi --}}
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
@@ -46,7 +47,7 @@
                                     class="form-control @error('name')
                                 is-invalid
                             @enderror"
-                                    name="name">
+                                    name="name" value="{{ old('name') }}">
                                 @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -59,7 +60,7 @@
                                     class="form-control @error('email')
                                 is-invalid
                             @enderror"
-                                    name="email">
+                                    name="email" value="{{ old('email') }}">
                                 @error('email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -87,8 +88,35 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label>Confirm Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
+                                    <input type="password"
+                                        class="form-control @error('new_confirm_password') is-invalid @enderror"
+                                        name="new_confirm_password">
+                                </div>
+                                @error('new_confirm_password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label>Phone</label>
-                                <input type="number" class="form-control" name="phone">
+                                <input type="text"
+                                    class="form-control @error('phone')
+                                is-invalid
+                            @enderror"
+                                    name="phone" value="{{ old('phone') }}">
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Roles</label>
@@ -119,6 +147,7 @@
             </div>
         </section>
     </div>
+
 @endsection
 
 @push('scripts')
